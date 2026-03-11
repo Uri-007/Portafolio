@@ -2,6 +2,8 @@ import { Github, Linkedin, Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "../../hooks/use-theme";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import logoDark from "../../assets/logo4.png";
+import logoLight from "../../assets/logo2.png";
 
 const links = [
   { name: "About", href: "#about" },
@@ -27,7 +29,11 @@ export function Navbar() {
           href="#home"
           className="font-bold text-lg tracking-tight hover:opacity-80 transition"
         >
-          Uriel.dev
+          <img
+            src={theme === "dark" ? logoDark : logoLight}
+            alt="UCS Logo"
+            className="h-9 object-contain"
+          />
         </a>
 
         {/* DESKTOP NAV */}

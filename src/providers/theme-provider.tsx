@@ -6,10 +6,25 @@ interface Props {
 }
 
 export function ThemeProvider({ children }: Props) {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const getInitialTheme = (): Theme => {
+    const saved = localStorage.getItem("theme") as Theme | null;
+
+    if (saved) return saved;
+
+    // Detectar preferencia del sistema
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+
+    return "light";
+  };
+
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
+
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {
@@ -17,7 +32,12 @@ export function ThemeProvider({ children }: Props) {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider
+      value={{
+        theme,
+        toggleTheme,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

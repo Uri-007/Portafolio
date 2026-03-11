@@ -1,97 +1,151 @@
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin } from "lucide-react";
+import { Mail, Github, Linkedin, ArrowUpRight, Send } from "lucide-react";
 import { Container } from "../../components/ui/container";
+import "./contact.css";
+
+const SOCIAL_LINKS = [
+  {
+    icon: Mail,
+    label: "Email",
+    href: "mailto:correo@email.com",
+    sublabel: "correo@email.com",
+  },
+  {
+    icon: Github,
+    label: "GitHub",
+    href: "https://github.com/Uri-007",
+    sublabel: "Uri-007",
+  },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    href: "https://linkedin.com",
+    sublabel: "Uriel",
+  },
+];
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-28 bg-neutral-50 dark:bg-neutral-950">
+    <section
+      id="contact"
+      className="relative py-28 bg-[#f5f4f0] dark:bg-[#111110] overflow-hidden"
+    >
+      <div className="absolute inset-0 contact-grid -z-10 pointer-events-none" />
+
       <Container>
-        {/* TITLE */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-neutral-900 dark:text-white">
-            Contact
-          </h2>
-
-          <p className="mt-4 text-neutral-600 dark:text-neutral-400">
-            ¿Tienes un proyecto o una idea? Me encantaría escucharla.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-16 items-start">
-          {/* INFO */}
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-20 items-start">
+          {/* ── LEFT ─────────────────────────────────────────── */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-semibold text-neutral-900 dark:text-white">
-              Hablemos
-            </h3>
+            <span className="contact-label">Contacto</span>
 
-            <p className="mt-4 text-neutral-600 dark:text-neutral-400">
+            <h2 className="contact-heading mt-4">
+              Hablemos de tu{" "}
+              <p className="contact-heading-accent">próximo proyecto</p>
+            </h2>
+
+            <p className="contact-body mt-6">
               Siempre estoy abierto a colaborar en proyectos interesantes,
               oportunidades laborales o simplemente para conversar sobre
               tecnología.
             </p>
 
-            <div className="mt-8 flex gap-6">
-              <a
-                href="mailto:correo@email.com"
-                className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white transition"
-              >
-                <Mail size={20} />
-                Email
-              </a>
-
-              <a
-                href="https://github.com"
-                target="_blank"
-                className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white transition"
-              >
-                <Github size={20} />
-                Github
-              </a>
-
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white transition"
-              >
-                <Linkedin size={20} />
-                LinkedIn
-              </a>
+            {/* Social cards */}
+            <div className="contact-socials mt-10">
+              {SOCIAL_LINKS.map((link, i) => {
+                const Icon = link.icon;
+                return (
+                  <motion.a
+                    key={link.label}
+                    href={link.href}
+                    target={
+                      link.href.startsWith("mailto") ? undefined : "_blank"
+                    }
+                    rel="noopener noreferrer"
+                    className="contact-social-item group"
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.1 + i * 0.08 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="contact-social-icon">
+                      <Icon size={16} strokeWidth={1.8} />
+                    </div>
+                    <div className="contact-social-text">
+                      <span className="contact-social-label">{link.label}</span>
+                      <span className="contact-social-sublabel">
+                        {link.sublabel}
+                      </span>
+                    </div>
+                    <ArrowUpRight
+                      size={14}
+                      className="contact-social-arrow"
+                      strokeWidth={2}
+                    />
+                  </motion.a>
+                );
+              })}
             </div>
           </motion.div>
 
-          {/* FORM */}
-          <motion.form
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+          {/* ── RIGHT — Form ─────────────────────────────────── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="contact-form-wrap"
           >
-            <input
-              type="text"
-              placeholder="Tu nombre"
-              className="w-full px-4 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-white"
-            />
+            <div className="contact-form-bar" />
 
-            <input
-              type="email"
-              placeholder="Tu email"
-              className="w-full px-4 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-white"
-            />
+            <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+              <div className="contact-field-row">
+                <div className="contact-field">
+                  <label className="contact-field-label">Nombre</label>
+                  <input
+                    type="text"
+                    placeholder="Tu nombre"
+                    className="contact-input"
+                  />
+                </div>
+                <div className="contact-field">
+                  <label className="contact-field-label">Email</label>
+                  <input
+                    type="email"
+                    placeholder="tu@email.com"
+                    className="contact-input"
+                  />
+                </div>
+              </div>
 
-            <textarea
-              placeholder="Tu mensaje"
-              rows={4}
-              className="w-full px-4 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-neutral-900 dark:focus:ring-white"
-            />
+              <div className="contact-field">
+                <label className="contact-field-label">Asunto</label>
+                <input
+                  type="text"
+                  placeholder="¿En qué puedo ayudarte?"
+                  className="contact-input"
+                />
+              </div>
 
-            <button className="px-6 py-3 rounded-xl bg-neutral-900 text-white dark:bg-white dark:text-black font-medium hover:opacity-90 transition">
-              Enviar mensaje
-            </button>
-          </motion.form>
+              <div className="contact-field">
+                <label className="contact-field-label">Mensaje</label>
+                <textarea
+                  placeholder="Cuéntame sobre tu proyecto o idea..."
+                  rows={5}
+                  className="contact-input contact-textarea"
+                />
+              </div>
+
+              <button type="submit" className="contact-submit">
+                <span>Enviar mensaje</span>
+                <Send size={14} strokeWidth={2} />
+              </button>
+            </form>
+          </motion.div>
         </div>
       </Container>
     </section>

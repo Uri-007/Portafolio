@@ -1,61 +1,91 @@
-import { motion } from "framer-motion";
-import { Github, ExternalLink } from "lucide-react";
-import { Badge } from "../../components/ui/badge";
+import { Github, ExternalLink, ArrowUpRight } from "lucide-react";
 import type { Project } from "../../types/project";
+
 
 interface Props {
   project: Project;
+  index: number;
 }
 
-export function ProjectCard({ project }: Props) {
+export function ProjectCard({ project, index }: Props) {
   return (
-    <motion.article
-      whileHover={{ y: -8 }}
-      className="group rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 overflow-hidden transition"
-    >
+    <article className="project-card group">
+      {/* top accent bar */}
+      <div className="project-card-bar" />
+
       {/* IMAGE */}
-      <div className="relative overflow-hidden">
+      <div className="project-image-wrap">
         <img
           src={project.image}
-          className="w-full h-48 object-cover transition duration-500 group-hover:scale-105"
+          alt={project.title}
+          className="project-image"
+          draggable={false}
         />
+        <div className="project-image-overlay" />
 
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100">
-          <a
-            href={project.github}
-            target="_blank"
-            className="p-3 rounded-full bg-white text-black hover:scale-110 transition"
-          >
-            <Github size={18} />
-          </a>
-
-          <a
-            href={project.demo}
-            target="_blank"
-            className="p-3 rounded-full bg-white text-black hover:scale-110 transition"
-          >
-            <ExternalLink size={18} />
-          </a>
+        {/* hover links */}
+        <div className="project-links">
+          {project.github && project.github !== "#" && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-link"
+              aria-label="GitHub"
+            >
+              <Github size={15} strokeWidth={1.8} />
+            </a>
+          )}
+          {project.demo && project.demo !== "#" && (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-link"
+              aria-label="Demo"
+            >
+              <ExternalLink size={15} strokeWidth={1.8} />
+            </a>
+          )}
         </div>
+
+        {/* index tag */}
+        <span className="project-index">
+          {String(index + 1).padStart(2, "0")}
+        </span>
       </div>
 
       {/* CONTENT */}
-      <div className="p-6">
-        <h3 className="text-xl font-semibold text-neutral-900 dark:text-white">
-          {project.title}
-        </h3>
+      <div className="project-content">
+        <h3 className="project-title">{project.title}</h3>
+        <p className="project-desc mt-2">{project.description}</p>
 
-        <p className="text-neutral-600 dark:text-neutral-400 mt-2">
-          {project.description}
-        </p>
-
-        {/* TECH */}
-        <div className="flex flex-wrap gap-2 mt-4">
-          {project.tech.map((tech) => (
-            <Badge key={tech}>{tech}</Badge>
+        {/* tech */}
+        <div className="project-tech mt-4">
+          {project.tech.map((t) => (
+            <span key={t} className="project-badge">
+              {t}
+            </span>
           ))}
         </div>
+
+        {/* bottom CTA row */}
+        <div className="project-cta mt-5">
+          {project.demo && project.demo !== "#" ? (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-cta-link"
+            >
+              Ver proyecto
+              <ArrowUpRight size={13} strokeWidth={2} />
+            </a>
+          ) : (
+            <span className="project-cta-muted">En desarrollo</span>
+          )}
+        </div>
       </div>
-    </motion.article>
+    </article>
   );
 }

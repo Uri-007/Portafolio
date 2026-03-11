@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { HERO, TECH_ITEMS } from "./hero.constants";
 import { Container } from "../../components/ui/container";
+import profile from "../../assets/logo4.png";
 import "./hero.css";
 
 export function HeroSection() {
@@ -9,10 +10,8 @@ export function HeroSection() {
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden bg-[#f5f4f0] dark:bg-[#111110]"
     >
-      {/* Grid */}
       <div className="absolute inset-0 hero-grid -z-10" />
 
-      {/* Warm ambient glow */}
       <div className="hero-glow-warm absolute top-[-100px] right-[10%] -z-10" />
       <div
         className="hero-glow-warm absolute bottom-[-100px] left-[5%] -z-10"
@@ -21,9 +20,7 @@ export function HeroSection() {
 
       <Container>
         <div className="grid lg:grid-cols-2 gap-20 items-center min-h-screen py-28 lg:py-0">
-          {/* ── LEFT ─────────────────────────────────────────────────── */}
           <div className="max-w-xl">
-            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -115,9 +112,9 @@ export function HeroSection() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.35 }}
             >
-              {/* 👇 Reemplaza con tu foto real */}
+              {/* Reemplaza con tu foto real */}
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=560&h=560&fit=crop&crop=face&q=85"
+                src={profile}
                 alt="Uriel — Software Engineer"
                 draggable={false}
               />
@@ -144,14 +141,6 @@ export function HeroSection() {
           </motion.div>
         </div>
       </Container>
-
-      {/* Scroll hint */}
-      <div className="hero-scroll">
-        <div className="hero-scroll-mouse">
-          <div className="hero-scroll-wheel" />
-        </div>
-        <span className="hero-scroll-label">Scroll</span>
-      </div>
     </section>
   );
 }

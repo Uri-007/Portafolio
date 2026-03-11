@@ -1,0 +1,266 @@
+/* ─── GRID ────────────────────────────────────────────────── */
+.exp-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.dark .exp-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+/* ─── LEFT HEADER ─────────────────────────────────────────── */
+.exp-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e8500a;
+  border-bottom: 1px solid rgba(232, 80, 10, 0.3);
+  padding-bottom: 2px;
+}
+
+.exp-heading {
+  font-weight: 400;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #0f0f0f;
+}
+.dark .exp-heading {
+  color: #f0ede8;
+}
+
+.exp-heading-accent {
+  color: #e8500a;
+}
+
+.exp-subtitle {
+  font-weight: 300;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: #6b7280;
+  max-width: 300px;
+}
+
+/* years badge */
+.exp-years-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+}
+.dark .exp-years-badge {
+  background: rgba(22, 22, 20, 0.7);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+.exp-years-value {
+  font-size: 30px;
+  font-weight: 400;
+  color: #0f0f0f;
+  line-height: 1;
+}
+.dark .exp-years-value {
+  color: #f0ede8;
+}
+
+.exp-years-label {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+
+/* ─── TIMELINE TRACK ──────────────────────────────────────── */
+.exp-line {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.1);
+}
+.dark .exp-line {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ─── TIMELINE ITEM ───────────────────────────────────────── */
+.exp-item {
+  position: relative;
+  padding-left: 36px;
+  padding-bottom: 28px;
+}
+
+.exp-item:last-child {
+  padding-bottom: 0;
+}
+
+/* ─── NODE ────────────────────────────────────────────────── */
+.exp-node {
+  position: absolute;
+  left: -5px;
+  top: 10px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #d1d5db;
+  border: 2px solid #f5f4f0;
+  z-index: 1;
+}
+.dark .exp-node {
+  background: #374151;
+  border-color: #111110;
+}
+
+.exp-node-active {
+  background: #e8500a;
+  border-color: #f5f4f0;
+}
+.dark .exp-node-active {
+  border-color: #111110;
+}
+
+.exp-node-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: rgba(232, 80, 10, 0.2);
+  animation: node-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes node-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+/* ─── CARD ────────────────────────────────────────────────── */
+.exp-card {
+  position: relative;
+  padding: 24px 26px 26px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+  cursor: default;
+}
+
+.exp-card:hover {
+  border-color: rgba(232, 80, 10, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+}
+
+.dark .exp-card {
+  background: rgba(22, 22, 20, 0.75);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+.dark .exp-card:hover {
+  border-color: rgba(232, 80, 10, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* left accent bar */
+.exp-card-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #e8500a;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.35s ease;
+  border-radius: 0 2px 2px 0;
+}
+.exp-card:hover .exp-card-bar {
+  transform: scaleY(1);
+}
+
+/* ─── CARD CONTENT ────────────────────────────────────────── */
+.exp-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exp-card-tag {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #d1d5db;
+}
+.dark .exp-card-tag {
+  color: #374151;
+}
+
+.exp-active-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #16a34a;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  letter-spacing: 0.02em;
+}
+.dark .exp-active-badge {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.08);
+  border-color: rgba(74, 222, 128, 0.18);
+}
+
+.exp-card-role {
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: #111110;
+  line-height: 1.1;
+}
+.dark .exp-card-role {
+  color: #f0ede8;
+}
+
+.exp-card-meta {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.exp-meta-sep {
+  color: #d1d5db;
+}
+.dark .exp-meta-sep {
+  color: #374151;
+}
+
+.exp-card-desc {
+  font-weight: 300;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: #6b7280;
+}

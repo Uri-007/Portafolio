@@ -1,72 +1,80 @@
 import { motion } from "framer-motion";
-import { Code, Database, Wrench } from "lucide-react";
 import { Container } from "../../components/ui/container";
-
-const skills = [
-  {
-    title: "Frontend",
-    icon: Code,
-    items: ["React", "TypeScript", "TailwindCSS", "Next.js"],
-  },
-  {
-    title: "Backend",
-    icon: Database,
-    items: ["Node.js", "Express", "MySQL", "REST APIs"],
-  },
-  {
-    title: "Tools",
-    icon: Wrench,
-    items: ["Git", "Docker", "Linux", "Figma"],
-  },
-];
+import "./skills.css";
+import { SKILLS } from "./skills-contants";
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="py-28 bg-neutral-50 dark:bg-neutral-950">
+    <section
+      id="skills"
+      className="relative py-28 bg-[#f5f4f0] dark:bg-[#111110] overflow-hidden"
+    >
+      <div className="absolute inset-0 skills-grid -z-10 pointer-events-none" />
+
       <Container>
-        {/* TITLE */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-neutral-900 dark:text-white">
-            Skills
+        {/* Header */}
+        <motion.div
+          className="mb-16 max-w-xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <span className="skills-label">Skills</span>
+          <h2 className="skills-heading mt-4">
+            Tecnologías con las que{" "}
+            <p className="skills-heading-accent">construyo</p>
           </h2>
-
-          <p className="mt-4 text-neutral-600 dark:text-neutral-400">
-            Tecnologías y herramientas con las que construyo aplicaciones
-            modernas.
+          <p className="skills-subtitle mt-4">
+            Herramientas y lenguajes que uso día a día para llevar ideas del
+            diseño al despliegue.
           </p>
-        </div>
+        </motion.div>
 
-        {/* CARDS */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {skills.map((skill, index) => {
-            const Icon = skill.icon;
+        {/* Cards */}
+        <div className="grid md:grid-cols-3 gap-5">
+          {SKILLS.map((skill, i) => (
+            <motion.div
+              key={skill.tag}
+              className="skills-card group"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: i * 0.1 }}
+              viewport={{ once: true }}
+            >
+              {/* Card top bar */}
+              <div className="skills-card-bar" />
 
-            return (
-              <motion.div
-                key={skill.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.15 }}
-                viewport={{ once: true }}
-                className="p-8 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-neutral-300 dark:hover:border-neutral-700 transition"
-              >
-                <Icon className="mb-4 text-neutral-700 dark:text-neutral-300" />
+              {/* Header row */}
+              <div className="flex items-start justify-between mb-5">
+                <div>
+                  <p className="skills-card-tag">{skill.tag}</p>
+                  <h3 className="skills-card-title mt-1">{skill.title}</h3>
+                  <p className="skills-card-desc mt-1">{skill.desc}</p>
+                </div>
+              </div>
 
-                <h3 className="text-xl font-semibold mb-4">{skill.title}</h3>
-
-                <ul className="space-y-2">
-                  {skill.items.map((item) => (
-                    <li
-                      key={item}
-                      className="text-neutral-600 dark:text-neutral-400"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            );
-          })}
+              {/* Tech items */}
+              <div className="skills-items">
+                {skill.items.map((item) => (
+                  <div key={item.name} className="skills-item">
+                    <div className="skills-item-logo-wrap">
+                      <img
+                        src={item.logo}
+                        alt={item.name}
+                        className="skills-item-logo"
+                        draggable={false}
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = "none";
+                        }}
+                      />
+                    </div>
+                    <span className="skills-item-name">{item.name}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </Container>
     </section>

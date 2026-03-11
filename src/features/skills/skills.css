@@ -1,0 +1,208 @@
+/* ─── GRID ────────────────────────────────────────────────── */
+.skills-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.dark .skills-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+/* ─── SECTION HEADER ──────────────────────────────────────── */
+.skills-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e8500a;
+  border-bottom: 1px solid rgba(232, 80, 10, 0.3);
+  padding-bottom: 2px;
+}
+
+.skills-heading {
+  font-weight: 400;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #0f0f0f;
+}
+.dark .skills-heading {
+  color: #f0ede8;
+}
+
+.skills-heading-accent {
+  color: #e8500a;
+}
+
+.skills-subtitle {
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #6b7280;
+  max-width: 400px;
+}
+
+/* ─── CARD ────────────────────────────────────────────────── */
+.skills-card {
+  position: relative;
+  padding: 28px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+  cursor: default;
+}
+
+.skills-card:hover {
+  border-color: rgba(232, 80, 10, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+}
+
+.dark .skills-card {
+  background: rgba(22, 22, 20, 0.75);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+.dark .skills-card:hover {
+  border-color: rgba(232, 80, 10, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* top accent bar — slides in from left on hover */
+.skills-card-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #e8500a;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+.skills-card:hover .skills-card-bar {
+  transform: scaleX(1);
+}
+
+/* ─── CARD TEXT ───────────────────────────────────────────── */
+.skills-card-tag {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: #d1d5db;
+}
+.dark .skills-card-tag {
+  color: #374151;
+}
+
+.skills-card-title {
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: #111110;
+  line-height: 1;
+}
+.dark .skills-card-title {
+  color: #f0ede8;
+}
+
+.skills-card-desc {
+  font-weight: 300;
+  font-size: 12.5px;
+  color: #9ca3af;
+  line-height: 1.5;
+}
+
+/* ─── TECH ITEMS ──────────────────────────────────────────── */
+.skills-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.dark .skills-items {
+  border-top-color: rgba(255, 255, 255, 0.06);
+}
+
+.skills-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: 9px;
+  background: transparent;
+  border: 1px solid transparent;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+  cursor: default;
+}
+
+.skills-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+.dark .skills-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.skills-item-logo-wrap {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.dark .skills-item-logo-wrap {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+.skills-item:hover .skills-item-logo-wrap {
+  background: rgba(232, 80, 10, 0.08);
+  border-color: rgba(232, 80, 10, 0.18);
+}
+
+.skills-item-logo {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+/* invert logos that are black in dark mode (Next.js, Express) */
+.dark .skills-item-logo[alt="Next.js"],
+.dark .skills-item-logo[alt="Express"] {
+  filter: invert(1);
+}
+
+.skills-item-name {
+  font-weight: 400;
+  font-size: 13.5px;
+  color: #374151;
+  letter-spacing: 0.005em;
+}
+
+.dark .skills-item-name {
+  color: #d1d5db;
+}

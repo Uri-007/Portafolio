@@ -1,0 +1,311 @@
+/* ─── GRID ────────────────────────────────────────────────── */
+.projects-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.dark .projects-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+/* ─── SECTION HEADER ──────────────────────────────────────── */
+.projects-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e8500a;
+  border-bottom: 1px solid rgba(232, 80, 10, 0.3);
+  padding-bottom: 2px;
+}
+
+.projects-heading {
+  font-weight: 400;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #0f0f0f;
+}
+.dark .projects-heading {
+  color: #f0ede8;
+}
+
+.projects-heading-accent {
+  color: #e8500a;
+}
+
+.projects-subtitle {
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #6b7280;
+  max-width: 400px;
+}
+
+/* ─── CARD ────────────────────────────────────────────────── */
+.project-card {
+  position: relative;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+  cursor: default;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  border-color: rgba(232, 80, 10, 0.25);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+}
+
+.dark .project-card {
+  background: rgba(22, 22, 20, 0.75);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+.dark .project-card:hover {
+  border-color: rgba(232, 80, 10, 0.3);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* top accent bar */
+.project-card-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #e8500a;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+  z-index: 10;
+}
+
+.project-card:hover .project-card-bar {
+  transform: scaleX(1);
+}
+
+/* ─── IMAGE ───────────────────────────────────────────────── */
+.project-image-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 0.5s ease,
+    filter 0.4s ease;
+  filter: grayscale(15%) brightness(0.95);
+}
+
+.dark .project-image {
+  filter: grayscale(20%) brightness(0.85);
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.04);
+  filter: grayscale(0%) brightness(1);
+}
+
+.project-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+}
+
+.dark .project-image-overlay {
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(16, 16, 14, 0.6) 100%
+  );
+}
+
+/* hover links */
+.project-links {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0;
+  background: rgba(245, 244, 240, 0.6);
+  backdrop-filter: blur(4px);
+  transition: opacity 0.25s ease;
+}
+
+.dark .project-links {
+  background: rgba(10, 10, 9, 0.55);
+}
+
+.project-card:hover .project-links {
+  opacity: 1;
+}
+
+.project-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #111110;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.dark .project-link {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #f0ede8;
+}
+
+.project-link:hover {
+  background: #e8500a;
+  border-color: #e8500a;
+  color: #fff;
+  transform: scale(1.08);
+}
+
+/* index tag */
+.project-index {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: rgba(0, 0, 0, 0.25);
+  font-weight: 400;
+}
+
+.dark .project-index {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ─── CONTENT ─────────────────────────────────────────────── */
+.project-content {
+  padding: 20px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-title {
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: #111110;
+  line-height: 1.1;
+}
+
+.dark .project-title {
+  color: #f0ede8;
+}
+
+.project-desc {
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #6b7280;
+}
+
+/* ─── TECH BADGES ─────────────────────────────────────────── */
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.project-badge {
+  font-size: 11px;
+  font-weight: 400;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.04);
+  color: #6b7280;
+  letter-spacing: 0.02em;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.dark .project-badge {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  color: #9ca3af;
+}
+
+.project-card:hover .project-badge {
+  border-color: rgba(232, 80, 10, 0.2);
+  color: #374151;
+}
+
+.dark .project-card:hover .project-badge {
+  color: #d1d5db;
+}
+
+/* ─── CTA ─────────────────────────────────────────────────── */
+.project-cta {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.dark .project-cta {
+  border-top-color: rgba(255, 255, 255, 0.06);
+}
+
+.project-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #e8500a;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition:
+    gap 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.project-cta-link:hover {
+  gap: 8px;
+  opacity: 0.8;
+}
+
+.project-cta-muted {
+  font-size: 12px;
+  color: #9ca3af;
+}

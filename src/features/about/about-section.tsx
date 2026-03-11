@@ -1,88 +1,105 @@
 import { motion } from "framer-motion";
 import { Code2, Rocket, Brain } from "lucide-react";
+import "./about.css";
+
+const CARDS = [
+  {
+    icon: Code2,
+    title: "Código limpio",
+    desc: "Escribo código mantenible y escalable con React, TypeScript y Node — arquitectura que dura.",
+    tag: "01",
+  },
+  {
+    icon: Rocket,
+    title: "Performance",
+    desc: "Interfaces rápidas con rendering optimizado, tooling moderno y experiencias de usuario fluidas.",
+    tag: "02",
+  },
+  {
+    icon: Brain,
+    title: "Resolución de problemas",
+    desc: "Transformo ideas complejas en soluciones digitales elegantes y confiables.",
+    tag: "03",
+  },
+];
 
 export function About() {
   return (
     <section
       id="about"
-      className="relative py-28 px-6 bg-white dark:bg-neutral-950"
+      className="relative py-28 px-6 bg-[#f5f4f0] dark:bg-[#111110] overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-        {/* LEFT SIDE */}
+      {/* Subtle grid — same as hero */}
+      <div className="absolute inset-0 about-grid -z-10 pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-start">
+        {/* ── LEFT ─────────────────────────────────────────────── */}
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55 }}
           viewport={{ once: true }}
         >
-          <p className="text-sm font-semibold text-neutral-500 mb-3">
-            ABOUT ME
-          </p>
+          {/* Label */}
+          <span className="about-label">Sobre mí</span>
 
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-            I build modern
-            <span className="text-neutral-900 dark:text-white">
-              {" "}
-              web experiences
-            </span>
+          {/* Heading */}
+          <h2 className="about-heading mt-4">
+            Construyo experiencias{" "}
+            <p className="about-heading-accent">web modernas</p>
           </h2>
 
-          <p className="text-neutral-600 dark:text-neutral-400 text-lg leading-relaxed mb-6">
-            I'm a passionate developer focused on building modern, scalable and
-            beautiful web applications. I enjoy creating interfaces that feel
-            fast, intuitive and visually engaging.
+          {/* Body */}
+          <p className="about-body mt-7">
+            Soy un desarrollador apasionado por construir aplicaciones web
+            modernas, escalables y con gran atención al detalle. Disfruto crear
+            interfaces que se sienten rápidas, intuitivas y visualmente
+            cuidadas.
           </p>
 
-          <p className="text-neutral-600 dark:text-neutral-400 text-lg leading-relaxed">
-            My goal is to combine clean code, strong architecture and great user
-            experience to deliver products that people genuinely enjoy using.
+          <p className="about-body mt-4">
+            Mi objetivo es combinar código limpio, arquitectura sólida y
+            excelente experiencia de usuario para entregar productos que la
+            gente genuinamente disfrute usar.
+          </p>
+
+          {/* Signature / accent line */}
+          <div className="about-accent-line mt-10" />
+
+          <p className="about-signature mt-5">
+            Uriel — Ingeniero en desarrollo y gestión de software
           </p>
         </motion.div>
 
-        {/* RIGHT SIDE CARDS */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="grid gap-6"
-        >
-          {/* CARD 1 */}
-          <div className="group p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition bg-neutral-50 dark:bg-neutral-900">
-            <Code2 className="mb-4 text-neutral-700 dark:text-neutral-300" />
+        {/* ── RIGHT — Cards ────────────────────────────────────── */}
+        <div className="grid gap-4">
+          {CARDS.map((card, i) => {
+            const Icon = card.icon;
+            return (
+              <motion.div
+                key={card.tag}
+                className="about-card group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: i * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className="about-card-header">
+                  <div className="about-card-icon-wrap">
+                    <Icon size={18} strokeWidth={1.5} />
+                  </div>
+                  <span className="about-card-tag">{card.tag}</span>
+                </div>
 
-            <h3 className="font-semibold text-lg mb-2">Clean Code</h3>
+                <h3 className="about-card-title mt-4">{card.title}</h3>
+                <p className="about-card-desc mt-2">{card.desc}</p>
 
-            <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-              I focus on writing maintainable and scalable code using modern
-              technologies like React, TypeScript and Node.
-            </p>
-          </div>
-
-          {/* CARD 2 */}
-          <div className="group p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition bg-neutral-50 dark:bg-neutral-900">
-            <Rocket className="mb-4 text-neutral-700 dark:text-neutral-300" />
-
-            <h3 className="font-semibold text-lg mb-2">Performance</h3>
-
-            <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-              I love building fast interfaces with optimized rendering, modern
-              tooling and smooth user experiences.
-            </p>
-          </div>
-
-          {/* CARD 3 */}
-          <div className="group p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition bg-neutral-50 dark:bg-neutral-900">
-            <Brain className="mb-4 text-neutral-700 dark:text-neutral-300" />
-
-            <h3 className="font-semibold text-lg mb-2">Problem Solving</h3>
-
-            <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-              I enjoy solving complex problems and transforming ideas into
-              reliable and elegant digital solutions.
-            </p>
-          </div>
-        </motion.div>
+                {/* hover accent bar */}
+                <div className="about-card-bar" />
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

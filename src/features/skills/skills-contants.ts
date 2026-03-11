@@ -29,8 +29,28 @@ export const SKILLS = [
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
       },
       {
+        name: "Material UI",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/materialui/materialui-original.svg",
+      },
+      {
+        name: "Bootstrap",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg",
+      },
+      {
         name: "TailwindCSS",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+      {
+        name: "Vue",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+      },
+      {
+        name: "Angular",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+      },
+      {
+        name: "jQuery",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg",
       },
     ],
   },
@@ -60,6 +80,10 @@ export const SKILLS = [
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
       },
       {
+        name: "MongoDB",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
+      },
+      {
         name: "REST APIs",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
       },
@@ -70,6 +94,10 @@ export const SKILLS = [
     title: "Herramientas",
     desc: "Flujos de trabajo modernos y eficientes.",
     items: [
+      {
+        name: "Visual Studio Code",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg",
+      },
       {
         name: "Git",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
@@ -85,6 +113,19 @@ export const SKILLS = [
       {
         name: "Postman",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg",
+      },
+      {
+        name: "GitHub",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+      },
+
+      {
+        name: "GitLab",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg",
+      },
+      {
+        name: "Slack",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg",
       },
     ],
   },

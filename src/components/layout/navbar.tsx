@@ -1,11 +1,12 @@
 import { Github, Linkedin, Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "../../hooks/use-theme";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logoDark from "../../assets/logo4.png";
 import logoLight from "../../assets/logo2.png";
+import "./navbar.css";
 
-const links = [
+const LINKS = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Experience", href: "#experience" },
@@ -16,72 +17,138 @@ const links = [
 export function Navbar() {
   const { toggleTheme, theme } = useTheme();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+
+  // Scroll elevation
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Active section via IntersectionObserver
+  useEffect(() => {
+    const sectionIds = LINKS.map((l) => l.href.replace("#", ""));
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
+      );
+
+      obs.observe(el);
+      observers.push(obs);
+    });
+
+    return () => observers.forEach((obs) => obs.disconnect());
+  }, []);
 
   return (
     <motion.header
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      className="fixed top-0 w-full z-50 backdrop-blur-xl bg-white/70 dark:bg-neutral-950/70 border-b border-neutral-200 dark:border-neutral-800"
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className={`navbar-root ${scrolled ? "navbar-scrolled" : ""}`}
     >
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+      <div className="navbar-inner">
         {/* LOGO */}
-        <a
-          href="#home"
-          className="font-bold text-lg tracking-tight hover:opacity-80 transition"
-        >
+        <a href="#home" className="navbar-logo">
           <img
             src={theme === "dark" ? logoDark : logoLight}
             alt="UCS Logo"
-            className="h-9 object-contain"
+            className="h-8 object-contain"
           />
         </a>
 
         {/* DESKTOP NAV */}
-        <nav className="hidden md:flex gap-8 text-sm font-medium">
-          {links.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="relative text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white transition"
-            >
-              {link.name}
-            </a>
-          ))}
+        <nav className="navbar-links">
+          {LINKS.map((link) => {
+            const id = link.href.replace("#", "");
+            const isActive = activeSection === id;
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                className={`navbar-link ${isActive ? "navbar-link-active" : ""}`}
+              >
+                {link.name}
+                {isActive && (
+                  <motion.span
+                    className="navbar-link-dot"
+                    layoutId="nav-dot"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </a>
+            );
+          })}
         </nav>
 
-        {/* RIGHT SIDE */}
-        <div className="flex items-center gap-4">
-          {/* SOCIAL */}
+        {/* RIGHT */}
+        <div className="navbar-right">
           <a
-            href="https://github.com"
+            href="https://github.com/Uri-007"
             target="_blank"
-            className="text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white transition"
+            rel="noopener noreferrer"
+            className="navbar-icon-btn"
+            aria-label="GitHub"
           >
-            <Github size={20} />
+            <Github size={16} strokeWidth={1.8} />
           </a>
 
           <a
             href="https://linkedin.com"
             target="_blank"
-            className="text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white transition"
+            rel="noopener noreferrer"
+            className="navbar-icon-btn"
+            aria-label="LinkedIn"
           >
-            <Linkedin size={20} />
+            <Linkedin size={16} strokeWidth={1.8} />
           </a>
 
-          {/* THEME */}
+          <div className="navbar-divider" />
+
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+            className="navbar-icon-btn"
+            aria-label="Toggle theme"
           >
-            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            {theme === "dark" ? (
+              <Sun size={16} strokeWidth={1.8} />
+            ) : (
+              <Moon size={16} strokeWidth={1.8} />
+            )}
           </button>
 
-          {/* MOBILE BUTTON */}
+          {/* MOBILE TOGGLE */}
           <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden p-2 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+            onClick={() => setOpen((v) => !v)}
+            className="navbar-icon-btn navbar-mobile-toggle"
+            aria-label="Toggle menu"
           >
-            {open ? <X size={20} /> : <Menu size={20} />}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={open ? "x" : "menu"}
+                initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
+                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
+                transition={{ duration: 0.18 }}
+                style={{ display: "flex" }}
+              >
+                {open ? (
+                  <X size={17} strokeWidth={1.8} />
+                ) : (
+                  <Menu size={17} strokeWidth={1.8} />
+                )}
+              </motion.span>
+            </AnimatePresence>
           </button>
         </div>
       </div>
@@ -89,25 +156,38 @@ export function Navbar() {
       {/* MOBILE MENU */}
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
+          <motion.nav
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950"
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="navbar-mobile-menu"
           >
-            <div className="flex flex-col p-6 gap-6 text-lg">
-              {links.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white transition"
-                >
-                  {link.name}
-                </a>
-              ))}
+            <div className="navbar-mobile-inner">
+              {LINKS.map((link, i) => {
+                const id = link.href.replace("#", "");
+                const isActive = activeSection === id;
+                return (
+                  <motion.a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className={`navbar-mobile-link ${isActive ? "navbar-mobile-link-active" : ""}`}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.2, delay: i * 0.04 }}
+                  >
+                    <span className="navbar-mobile-link-tag">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {link.name}
+                    {isActive && <span className="navbar-mobile-active-dot" />}
+                  </motion.a>
+                );
+              })}
             </div>
-          </motion.div>
+          </motion.nav>
         )}
       </AnimatePresence>
     </motion.header>

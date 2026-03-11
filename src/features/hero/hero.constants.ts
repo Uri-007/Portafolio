@@ -1,12 +1,13 @@
 export const HERO = {
   title: "Hola, soy",
-  titleAccent: "Uriel",
+  titleAccent: "Uriel Sandoval",
+
   subtitle:
-    "Software Engineer enfocado en construir aplicaciones web modernas, rápidas y escalables — del diseño al despliegue.",
+    "Ingeniero en Desarrollo y Gestión de Software con experiencia construyendo sistemas internos, herramientas de automatización y aplicaciones fullstack con React, TypeScript y Node.js. He optimizado procesos empresariales reduciendo tiempos operativos.",
+
   stats: [
-    { value: "3+", label: "Años de exp." },
-    { value: "20+", label: "Proyectos" },
-    { value: "∞", label: "Café" },
+    { value: "3+", label: "Años experiencia" },
+    { value: "6+", label: "Proyectos desarrollados" },
   ],
 };
 

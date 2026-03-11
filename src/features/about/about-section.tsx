@@ -51,23 +51,25 @@ export function About() {
 
           {/* Body */}
           <p className="about-body mt-7">
-            Soy un desarrollador apasionado por construir aplicaciones web
-            modernas, escalables y con gran atención al detalle. Disfruto crear
-            interfaces que se sienten rápidas, intuitivas y visualmente
-            cuidadas.
+            Soy Ingeniero en Desarrollo y Gestión de Software con experiencia en
+            desarrollo frontend especializado en React, TypeScript y Next.js,
+            además de conocimientos backend con Node.js, Express y bases de
+            datos SQL y NoSQL.
           </p>
 
           <p className="about-body mt-4">
-            Mi objetivo es combinar código limpio, arquitectura sólida y
-            excelente experiencia de usuario para entregar productos que la
-            gente genuinamente disfrute usar.
+            He desarrollado sistemas internos, herramientas de automatización y
+            aplicaciones empresariales que han mejorado la eficiencia operativa.
+            Me enfoco en crear software escalable, mantenible y con excelente
+            experiencia de usuario.
           </p>
 
           {/* Signature / accent line */}
           <div className="about-accent-line mt-10" />
 
           <p className="about-signature mt-5">
-            Uriel — Ingeniero en desarrollo y gestión de software
+            Me considero una persona proactiva, adaptable y orientada a resolver
+            problemas mediante soluciones tecnológicas modernas.
           </p>
         </motion.div>
 

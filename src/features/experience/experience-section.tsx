@@ -1,36 +1,7 @@
 import { motion } from "framer-motion";
 import { Container } from "../../components/ui/container";
 import "./experience.css";
-
-const EXPERIENCES = [
-  {
-    tag: "01",
-    role: "Frontend Developer",
-    company: "Freelance",
-    period: "2023 — Presente",
-    description:
-      "Desarrollo de aplicaciones web modernas con React, TypeScript y TailwindCSS, enfocadas en rendimiento y experiencia de usuario.",
-    status: "active",
-  },
-  {
-    tag: "02",
-    role: "Software Developer",
-    company: "Proyectos personales",
-    period: "2022 — 2023",
-    description:
-      "Construcción de proyectos fullstack con Node.js, APIs REST y bases de datos SQL para fortalecer arquitectura y escalabilidad.",
-    status: "past",
-  },
-  {
-    tag: "03",
-    role: "Computer Science Student",
-    company: "Self Learning",
-    period: "2021 — 2022",
-    description:
-      "Aprendizaje intensivo de desarrollo web moderno, estructuras de datos y buenas prácticas de ingeniería de software.",
-    status: "past",
-  },
-];
+import { EXPERIENCES } from "./experience-constants";
 
 export function ExperienceSection() {
   return (
@@ -52,7 +23,7 @@ export function ExperienceSection() {
           >
             <span className="exp-label">Experiencia</span>
             <h2 className="exp-heading mt-4">
-              Mi camino en el <p className="exp-heading-accent">software</p>
+              Mi camino en el mundo del desarrollo de <p className="exp-heading-accent">software</p>
             </h2>
             <p className="exp-subtitle mt-5">
               Desde el aprendizaje autodidacta hasta proyectos reales — cada

@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
 import { HERO, TECH_ITEMS } from "./hero.constants";
 import { Container } from "../../components/ui/container";
-import profile from "../../assets/logo4.png";
+import profile from "../../assets/avatar.png";
+import ligthProfile from "../../assets/lightAvatar.png";
 import "./hero.css";
+import { useTheme } from "../../hooks/use-theme";
 
 export function HeroSection() {
+  const { theme } = useTheme();
   return (
     <section
       id="home"
@@ -20,6 +23,7 @@ export function HeroSection() {
 
       <Container>
         <div className="grid lg:grid-cols-2 gap-20 items-center min-h-screen py-28 lg:py-0">
+          {/* ── LEFT ─────────────────────────────────────────── */}
           <div className="max-w-xl">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -35,7 +39,6 @@ export function HeroSection() {
               </span>
             </motion.div>
 
-            {/* Title */}
             <motion.h1
               className="hero-title mt-7 text-5xl md:text-6xl xl:text-[72px]"
               initial={{ opacity: 0, y: 20 }}
@@ -43,10 +46,9 @@ export function HeroSection() {
               transition={{ duration: 0.55, delay: 0.1 }}
             >
               {HERO.title}{" "}
-              <span className="hero-title-accent">{HERO.titleAccent}</span>
+              <p className="hero-title-accent">{HERO.titleAccent}</p>
             </motion.h1>
 
-            {/* Subtitle */}
             <motion.p
               className="hero-subtitle mt-6 text-base md:text-lg max-w-md"
               initial={{ opacity: 0, y: 20 }}
@@ -56,7 +58,6 @@ export function HeroSection() {
               {HERO.subtitle}
             </motion.p>
 
-            {/* CTAs */}
             <motion.div
               className="flex flex-wrap gap-3 mt-9"
               initial={{ opacity: 0, y: 20 }}
@@ -80,7 +81,6 @@ export function HeroSection() {
               </a>
             </motion.div>
 
-            {/* Stats */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -98,29 +98,26 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          {/* ── RIGHT ────────────────────────────────────────────────── */}
+          {/* ── RIGHT ────────────────────────────────────────── */}
           <motion.div
             className="relative hidden lg:flex justify-center items-center min-h-[500px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.25 }}
           >
-            {/* Avatar */}
             <motion.div
               className="hero-avatar-frame"
               initial={{ opacity: 0, scale: 0.92, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.35 }}
             >
-              {/* Reemplaza con tu foto real */}
               <img
-                src={profile}
+                src={theme === "dark" ? profile : ligthProfile}
                 alt="Uriel — Software Engineer"
                 draggable={false}
               />
             </motion.div>
 
-            {/* Tech cards */}
             {TECH_ITEMS.map((tech, i) => (
               <motion.div
                 key={tech.id}
@@ -141,6 +138,14 @@ export function HeroSection() {
           </motion.div>
         </div>
       </Container>
+
+      {/* Scroll indicator */}
+      <div className="hero-scroll">
+        <div className="hero-scroll-mouse">
+          <div className="hero-scroll-wheel" />
+        </div>
+        <span className="hero-scroll-label">Scroll</span>
+      </div>
     </section>
   );
 }

@@ -34,7 +34,7 @@
     linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
 }
 
-/* ─── AMBIENT GLOW — warm neutral ─────────────────────────── */
+/* ─── AMBIENT GLOW ────────────────────────────────────────── */
 .hero-glow-warm {
   position: absolute;
   width: 600px;
@@ -61,7 +61,6 @@
   font-size: 12px;
   font-weight: 500;
   color: var(--hero-muted);
-  font-family: "Geist", sans-serif;
   backdrop-filter: blur(12px);
   box-shadow: 0 1px 4px var(--hero-shadow);
   letter-spacing: 0.01em;
@@ -121,7 +120,6 @@
 
 /* ─── SUBTITLE ────────────────────────────────────────────── */
 .hero-subtitle {
-  font-family: "Geist", sans-serif;
   font-weight: 300;
   color: var(--hero-muted);
   line-height: 1.65;
@@ -137,7 +135,6 @@
   border-radius: 10px;
   background: var(--hero-text);
   color: var(--hero-bg);
-  font-family: "Geist", sans-serif;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 0.01em;
@@ -160,7 +157,6 @@
   border-radius: 10px;
   background: transparent;
   color: var(--hero-text);
-  font-family: "Geist", sans-serif;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 0.01em;
@@ -181,7 +177,6 @@
 
 /* ─── STATS ───────────────────────────────────────────────── */
 .hero-stat-value {
-  font-family: "Instrument Serif", serif;
   font-size: 32px;
   font-weight: 400;
   color: var(--hero-text);
@@ -189,13 +184,20 @@
 }
 
 .hero-stat-label {
-  font-family: "Geist", sans-serif;
   font-size: 11px;
   font-weight: 400;
   color: var(--hero-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-top: 4px;
+}
+
+/* ─── DIVIDER ─────────────────────────────────────────────── */
+.hero-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--hero-border);
+  margin: 28px 0;
 }
 
 /* ─── AVATAR FRAME ────────────────────────────────────────── */
@@ -227,7 +229,6 @@
   gap: 9px;
   padding: 9px 14px;
   border-radius: 12px;
-  font-family: "Geist", sans-serif;
   font-weight: 500;
   font-size: 12.5px;
   backdrop-filter: blur(20px);
@@ -252,6 +253,12 @@
   object-fit: contain;
   flex-shrink: 0;
   border-radius: 4px;
+}
+
+/* invert dark logos in dark mode */
+.dark .tech-logo[alt="Next.js"],
+.dark .tech-logo[alt="Express"] {
+  filter: invert(1);
 }
 
 .hero-tech-react {
@@ -292,7 +299,43 @@
   }
 }
 
+/* ─── SCROLL INDICATOR ────────────────────────────────────── */
+.hero-scroll {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: scroll-hint 3s ease-in-out infinite;
+}
 
+.hero-scroll-mouse {
+  width: 22px;
+  height: 34px;
+  border: 1.5px solid var(--hero-muted);
+  border-radius: 11px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.hero-scroll-wheel {
+  width: 3px;
+  height: 6px;
+  background: var(--hero-muted);
+  border-radius: 99px;
+  animation: scroll-wheel 2s ease-in-out infinite;
+}
+
+.hero-scroll-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hero-muted);
+}
 
 @keyframes scroll-hint {
   0%,
@@ -315,12 +358,4 @@
     transform: translateY(8px);
     opacity: 0;
   }
-}
-
-/* ─── DIVIDER LINE ────────────────────────────────────────── */
-.hero-divider {
-  width: 100%;
-  height: 1px;
-  background: var(--hero-border);
-  margin: 28px 0;
 }

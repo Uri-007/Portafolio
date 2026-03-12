@@ -1,44 +1,9 @@
 import { motion } from "framer-motion";
-import type { Project } from "../../types/project";
 import { ProjectCard } from "./project-card";
 import { Container } from "../../components/ui/container";
-import image1 from "../../assets/image1.png";
-import image2 from "../../assets/image2.png";
-import image3 from "../../assets/image3.png";
-import "./projects.css";
 
-const projects: Project[] = [
-  {
-    id: "1",
-    title: "Developer Portfolio",
-    description:
-      "Portafolio moderno construido con React, TypeScript y animaciones con Framer Motion.",
-    image: image1,
-    tech: ["React", "TypeScript", "Tailwind", "Framer Motion"],
-    github: "#",
-    demo: "#",
-  },
-  {
-    id: "2",
-    title: "FixPen",
-    description:
-      "Landing page moderna con diseño responsive, animaciones fluidas y formulario de contacto integrado.",
-    image: image2,
-    tech: ["React", "TypeScript", "Tailwind", "Framer Motion"],
-    github: "https://github.com/Uri-007/LandingPage-FixPen",
-    demo: "https://fixpen.netlify.app/",
-  },
-  {
-    id: "3",
-    title: "Melp Restaurants",
-    description:
-      "Aplicación web para explorar y filtrar restaurantes con interfaz de búsqueda dinámica.",
-    image: image3,
-    tech: ["React", "TypeScript", "Tailwind", "Framer Motion"],
-    github: "https://github.com/Uri-007/restaurants-web",
-    demo: "https://uri-007.github.io/restaurants-web/",
-  },
-];
+import "./projects.css";
+import { projects } from "./projects-constants";
 
 export function ProjectsSection() {
   return (

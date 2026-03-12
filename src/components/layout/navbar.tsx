@@ -104,7 +104,7 @@ export function Navbar() {
           </a>
 
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/uriel-cesar-sandoval-766972314/"
             target="_blank"
             rel="noopener noreferrer"
             className="navbar-icon-btn"

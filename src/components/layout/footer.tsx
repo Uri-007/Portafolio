@@ -12,8 +12,8 @@ const LINKS = [
 
 const SOCIALS = [
   { icon: Github, href: "https://github.com/Uri-007", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: Mail, href: "mailto:correo@email.com", label: "Email" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/uriel-cesar-sandoval-766972314/", label: "LinkedIn" },
+  { icon: Mail, href: "mailto:urielcesarsandoval10@gmail.com", label: "Email" },
 ];
 
 export function Footer() {

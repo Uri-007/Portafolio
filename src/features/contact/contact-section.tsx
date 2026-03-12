@@ -7,8 +7,8 @@ const SOCIAL_LINKS = [
   {
     icon: Mail,
     label: "Email",
-    href: "mailto:correo@email.com",
-    sublabel: "correo@email.com",
+    href: "mailto:urielcesarsandoval10@gmail.com",
+    sublabel: "urielcesarsandoval10@gmail.com",
   },
   {
     icon: Github,
@@ -19,7 +19,7 @@ const SOCIAL_LINKS = [
   {
     icon: Linkedin,
     label: "LinkedIn",
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/in/uriel-cesar-sandoval-766972314/",
     sublabel: "Uriel",
   },
 ];

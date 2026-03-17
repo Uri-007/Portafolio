@@ -1,6 +1,14 @@
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, ArrowUpRight, Send } from "lucide-react";
+import {
+  Mail,
+  Github,
+  Linkedin,
+  ArrowUpRight,
+  MapPin,
+  Clock,
+} from "lucide-react";
 import { Container } from "../../components/ui/container";
+import { useEffect, useState } from "react";
 import "./contact.css";
 
 const SOCIAL_LINKS = [
@@ -23,6 +31,38 @@ const SOCIAL_LINKS = [
     sublabel: "Uriel",
   },
 ];
+
+const STACK_ITEMS = [
+  "React",
+  "TypeScript",
+  "Node.js",
+  "Next.js",
+  "Tailwind CSS",
+  "PostgreSQL",
+];
+
+function LiveClock() {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const update = () => {
+      const now = new Date();
+      setTime(
+        now.toLocaleTimeString("es-MX", {
+          timeZone: "America/Mexico_City",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        }),
+      );
+    };
+    update();
+    const id = setInterval(update, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return <span>{time}</span>;
+}
 
 export function ContactSection() {
   return (
@@ -92,59 +132,78 @@ export function ContactSection() {
             </div>
           </motion.div>
 
-          {/* ── RIGHT — Form ─────────────────────────────────── */}
+          {/* ── RIGHT — Info Card ────────────────────────────── */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
             viewport={{ once: true }}
-            className="contact-form-wrap"
+            className="contact-info-wrap"
           >
             <div className="contact-form-bar" />
 
-            <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-              <div className="contact-field-row">
-                <div className="contact-field">
-                  <label className="contact-field-label">Nombre</label>
-                  <input
-                    type="text"
-                    placeholder="Tu nombre"
-                    className="contact-input"
-                  />
-                </div>
-                <div className="contact-field">
-                  <label className="contact-field-label">Email</label>
-                  <input
-                    type="email"
-                    placeholder="tu@email.com"
-                    className="contact-input"
-                  />
-                </div>
-              </div>
+            {/* Availability badge */}
+            <div className="contact-availability">
+              <span className="contact-availability-dot" />
+              <span className="contact-availability-text">
+                Disponible
+              </span>
+            </div>
 
-              <div className="contact-field">
-                <label className="contact-field-label">Asunto</label>
-                <input
-                  type="text"
-                  placeholder="¿En qué puedo ayudarte?"
-                  className="contact-input"
+            {/* Quote */}
+            <blockquote className="contact-quote">
+              "Construyo interfaces que no solo se ven bien — las diseño para
+              que la gente las disfrute usar."
+            </blockquote>
+
+            <div className="contact-divider" />
+
+            {/* Location & time */}
+            <div className="contact-meta-row">
+              <div className="contact-meta-item">
+                <MapPin
+                  size={13}
+                  strokeWidth={1.8}
+                  className="contact-meta-icon"
                 />
+                <span>Puebla, México</span>
               </div>
-
-              <div className="contact-field">
-                <label className="contact-field-label">Mensaje</label>
-                <textarea
-                  placeholder="Cuéntame sobre tu proyecto o idea..."
-                  rows={5}
-                  className="contact-input contact-textarea"
+              <div className="contact-meta-item">
+                <Clock
+                  size={13}
+                  strokeWidth={1.8}
+                  className="contact-meta-icon"
                 />
+                <span>
+                  <LiveClock /> — CDT (UTC−6)
+                </span>
               </div>
+            </div>
 
-              <button type="submit" className="contact-submit">
-                <span>Enviar mensaje</span>
-                <Send size={14} strokeWidth={2} />
-              </button>
-            </form>
+            <div className="contact-divider" />
+
+            {/* Stack */}
+            <div className="contact-stack-section">
+              <p className="contact-stack-label">Stack actual</p>
+              <div className="contact-stack-tags">
+                {STACK_ITEMS.map((item) => (
+                  <span key={item} className="contact-stack-tag">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="contact-divider" />
+
+            {/* CTA */}
+            <a
+              href="mailto:urielcesarsandoval10@gmail.com"
+              className="contact-cta"
+            >
+              <span>Enviar un mensaje</span>
+              <ArrowUpRight size={15} strokeWidth={2} />
+            </a>
           </motion.div>
         </div>
       </Container>

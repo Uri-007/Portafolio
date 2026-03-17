@@ -1,7 +1,6 @@
 import { Github, ExternalLink, ArrowUpRight } from "lucide-react";
 import type { Project } from "../../types/project";
 
-
 interface Props {
   project: Project;
   index: number;
@@ -71,18 +70,36 @@ export function ProjectCard({ project, index }: Props) {
 
         {/* bottom CTA row */}
         <div className="project-cta mt-5">
-          {project.demo && project.demo !== "#" ? (
+          {project.demo && (
             <a
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
               className="project-cta-link"
             >
-              Ver proyecto
+              Ver demo
               <ArrowUpRight size={13} strokeWidth={2} />
             </a>
-          ) : (
+          )}
+
+          {!project.demo && project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-cta-link"
+            >
+              Ver código
+              <ArrowUpRight size={13} strokeWidth={2} />
+            </a>
+          )}
+
+          {project.status === "in-progress" && (
             <span className="project-cta-muted">En desarrollo</span>
+          )}
+
+          {project.status === "private" && (
+            <span className="project-cta-muted">Proyecto privado</span>
           )}
         </div>
       </div>

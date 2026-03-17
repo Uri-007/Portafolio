@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { ProjectCard } from "./project-card";
 import { Container } from "../../components/ui/container";
-
 import "./projects.css";
 import { projects } from "./projects-constants";
 

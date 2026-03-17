@@ -6,4 +6,5 @@ export interface Project {
   tech: string[];
   github: string;
   demo: string;
+  status?: "completed" | "in-progress" | "private";
 }

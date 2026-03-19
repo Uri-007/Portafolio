@@ -34,11 +34,16 @@ const SOCIAL_LINKS = [
 
 const STACK_ITEMS = [
   "React",
+  "JavaScript",
   "TypeScript",
   "Node.js",
   "Next.js",
+  "Material UI",
+  "Bootstrap",
   "Tailwind CSS",
   "PostgreSQL",
+  "MongoDB",
+  "MySQL",
 ];
 
 function LiveClock() {
@@ -145,9 +150,7 @@ export function ContactSection() {
             {/* Availability badge */}
             <div className="contact-availability">
               <span className="contact-availability-dot" />
-              <span className="contact-availability-text">
-                Disponible
-              </span>
+              <span className="contact-availability-text">Disponible</span>
             </div>
 
             {/* Quote */}

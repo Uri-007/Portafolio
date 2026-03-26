@@ -4,7 +4,7 @@ import "./footer.css";
 const LINKS = [
   { label: "Inicio", href: "#home" },
   { label: "Sobre mí", href: "#about" },
-  { label: "Skills", href: "#skills" },
+  { label: "Habilidades", href: "#skills" },
   { label: "Experiencia", href: "#experience" },
   { label: "Proyectos", href: "#projects" },
   { label: "Contacto", href: "#contact" },

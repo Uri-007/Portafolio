@@ -7,11 +7,11 @@ import logoLight from "../../assets/logo2.png";
 import "./navbar.css";
 
 const LINKS = [
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Experience", href: "#experience" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contact" },
+  { name: "Sobre mí", href: "#about" },
+  { name: "Habilidades", href: "#skills" },
+  { name: "Experiencia", href: "#experience" },
+  { name: "Proyectos", href: "#projects" },
+  { name: "Contacto", href: "#contact" },
 ];
 
 export function Navbar() {

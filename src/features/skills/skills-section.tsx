@@ -20,7 +20,7 @@ export function SkillsSection() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <span className="skills-label">Skills</span>
+          <span className="skills-label">Habilidades</span>
           <h2 className="skills-heading mt-4">
             Tecnologías con las que{" "}
             <p className="skills-heading-accent">construyo</p>

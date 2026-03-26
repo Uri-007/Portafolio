@@ -48,10 +48,6 @@ export const SKILLS = [
         name: "Angular",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
       },
-      {
-        name: "jQuery",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg",
-      },
     ],
   },
   {
@@ -82,10 +78,6 @@ export const SKILLS = [
       {
         name: "MongoDB",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
-      },
-      {
-        name: "REST APIs",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
       },
     ],
   },
